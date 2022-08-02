@@ -56,32 +56,26 @@ from pygments import highlight, lexers, formatters
 
 def scan_techniques(nmt, scan_type, target):
     if scan_type == '-sF':
-        fin_scan = nmt.nmap_fin_scan(target)
-        return fin_scan
+        return nmt.nmap_fin_scan(target)
 
     elif scan_type == '-sI':
         idle_scan = nmt.nmap_idle_scan(target)
         return
 
     elif scan_type == '-sP':
-        ping_scan = nmt.nmap_ping_scan(target)
-        return ping_scan
+        return nmt.nmap_ping_scan(target)
 
     elif scan_type == '-sS':
-        syn_scan = nmt.nmap_syn_scan(target)
-        return syn_scan
+        return nmt.nmap_syn_scan(target)
 
     elif scan_type == '-F':
-        syn_fast_scan = nmt.nmap_syn_scan(target)
-        return syn_fast_scan
+        return nmt.nmap_syn_scan(target)
 
     elif scan_type == '-sT':
-        tcp_scan = nmt.nmap_tcp_scan(target)
-        return tcp_scan
+        return nmt.nmap_tcp_scan(target)
 
     elif scan_type == '-sU':
-        udp_scan = nmt.nmap_udp_scan(target)
-        return udp_scan
+        return nmt.nmap_udp_scan(target)
 
     else:
         raise ValueError("Not a scan technique")
@@ -89,61 +83,47 @@ def scan_techniques(nmt, scan_type, target):
 
 def scan_discovery(nmd, scan_type, target, ports_num):
     if scan_type == '-Pn':
-        no_ping = nmd.nmap_portscan_only(target)
-        return no_ping
+        return nmd.nmap_portscan_only(target)
 
     elif scan_type == '-sn':
-        ping_scan = nmd.nmap_no_portscan(target)
-        return ping_scan
+        return nmd.nmap_no_portscan(target)
 
     elif scan_type == '-PR':
-        arp_scan = nmd.nmap_no_portscan(target)
-        return arp_scan
+        return nmd.nmap_no_portscan(target)
 
     elif scan_type == '-n':
-        disable_dns = nmd.nmap_disable_dns(target)
-        return disable_dns
+        return nmd.nmap_disable_dns(target)
 
     elif scan_type == '-O --osscan-guess':
-        no_ping_os_detection = nmd.nmap_portscan_only(target, args=scan_type)
-        return no_ping_os_detection
+        return nmd.nmap_portscan_only(target, args=scan_type)
 
     elif scan_type == '-A -T2':
-        no_ping_stealth = nmd.nmap_portscan_only(target, args=scan_type)
-        return no_ping_stealth
+        return nmd.nmap_portscan_only(target, args=scan_type)
 
     elif scan_type == '-A':
-        no_ping_advanced = nmd.nmap_portscan_only(target, args=scan_type)
-        return no_ping_advanced
+        return nmd.nmap_portscan_only(target, args=scan_type)
 
     elif scan_type == '-A -v':
-        no_ping_advanced_verbose = nmd.nmap_portscan_only(target, args=scan_type)
-        return no_ping_advanced_verbose
+        return nmd.nmap_portscan_only(target, args=scan_type)
 
     elif scan_type == '-T4 -sV':
-        no_ping_aggressive_service = nmd.nmap_portscan_only(target, args=scan_type)
-        return no_ping_aggressive_service
+        return nmd.nmap_portscan_only(target, args=scan_type)
 
     elif scan_type == '-n -A':
-        no_ping_no_dns = nmd.nmap_portscan_only(target, args=scan_type)
-        return no_ping_no_dns
+        return nmd.nmap_portscan_only(target, args=scan_type)
 
     elif scan_type == '-n -V':
-        no_ping_advanced_service = nmd.nmap_portscan_only(target, args=scan_type)
-        return no_ping_advanced_service
+        return nmd.nmap_portscan_only(target, args=scan_type)
 
     elif scan_type == '-f -A':
-        no_ping_fragment = nmd.nmap_portscan_only(target, args=scan_type)
-        return no_ping_fragment
+        return nmd.nmap_portscan_only(target, args=scan_type)
 
     elif scan_type == '-n -sV --version-intensity 3':
-        no_ping_version_intensity = nmd.nmap_portscan_only(target, args=scan_type)
-        return no_ping_version_intensity
+        return nmd.nmap_portscan_only(target, args=scan_type)
 
     elif scan_type == '-O --osscan-guess -p ':
         scan_type = scan_type + str(ports_num)
-        no_ping_detect_ports = nmd.nmap_portscan_only(target, args=scan_type)
-        return no_ping_detect_ports
+        return nmd.nmap_portscan_only(target, args=scan_type)
 
     else:
         raise ValueError("Not a scan technique")
@@ -151,40 +131,31 @@ def scan_discovery(nmd, scan_type, target, ports_num):
 
 def scan_command(nm, scan_type, target, domain):
     if scan_type == '-sA':
-        firewall_detect = nm.nmap_detect_firewall(target)
-        return firewall_detect
+        return nm.nmap_detect_firewall(target)
 
     elif scan_type == '-O':
-        os_detect = nm.nmap_os_detection(target)
-        return os_detect
+        return nm.nmap_os_detection(target)
 
     elif scan_type == '--top-ports':
-        top_ports = nm.scan_top_ports(target)
-        return top_ports
+        return nm.scan_top_ports(target)
 
     elif scan_type == '20 -sZ':
-        top_ports_sctp = nm.scan_top_ports(target)
-        return top_ports_sctp
+        return nm.scan_top_ports(target)
 
     elif scan_type == '-script dns-brute':
-        dns_brute = nm.nmap_dns_brute_script(domain)
-        return dns_brute
+        return nm.nmap_dns_brute_script(domain)
 
     elif scan_type == '-sL':
-        hostslist = nm.nmap_list_scan(target)
-        return hostslist
+        return nm.nmap_list_scan(target)
 
     elif scan_type == '-p-':
-        subnet_scan = nm.nmap_subnet_scan(target)
-        return subnet_scan
+        return nm.nmap_subnet_scan(target)
 
     elif scan_type == '-sV':
-        service_basic = nm.nmap_version_detection(target)
-        return service_basic
+        return nm.nmap_version_detection(target)
 
     elif scan_type == '-sX':
-        service_xmas = nm.nmap_version_detection(target, args=scan_type)
-        return service_xmas
+        return nm.nmap_version_detection(target, args=scan_type)
 
     else:
         raise ValueError("Not a scan technique")

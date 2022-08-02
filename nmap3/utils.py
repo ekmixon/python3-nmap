@@ -36,10 +36,7 @@ def get_nmap_path():
     by calling which nmap
     """
     os_type = sys.platform
-    if os_type == 'win32':
-        cmd = "where nmap"
-    else:
-        cmd = "which nmap"
+    cmd = "where nmap" if os_type == 'win32' else "which nmap"
     args = shlex.split(cmd)
     sub_proc = subprocess.Popen(args, stdout=subprocess.PIPE)
 
@@ -57,7 +54,7 @@ def get_nmap_path():
 
 def get_nmap_version():
     nmap = get_nmap_path()
-    cmd = nmap + " --version"
+    cmd = f"{nmap} --version"
 
     args = shlex.split(cmd)
     sub_proc = subprocess.Popen(args, stdout=subprocess.PIPE)
@@ -76,7 +73,7 @@ def user_is_root(func):
             is_root_or_admin = (os.getuid() == 0)
         except AttributeError as e:
             is_root_or_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
-            
+
         if(is_root_or_admin):
             return func(*args, **kwargs)
         else:
